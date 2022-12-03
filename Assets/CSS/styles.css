@@ -1,0 +1,25 @@
+
+*{
+font-family: 'Cormorant Garamond', serif;
+}
+
+.hero{
+background-color: #71a8a7;
+color: #e3f0f0;
+font-size: 20px;
+}
+
+.btn-custom {
+    background-color: #a88f82;
+    color: #fffaf7;
+}
+  
+.btn-custom:hover {
+    background-color: #f5e1d5;
+    color: #a88f82;
+}
+
+.custom{
+    background-color: #d5f5f5;
+    color: #71a8a7;
+}
