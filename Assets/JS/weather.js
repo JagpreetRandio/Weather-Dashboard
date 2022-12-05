@@ -53,4 +53,47 @@ var getCityWeather = function(city){
     });
 };
 
+// this will clear the data, old content
+var displayWeather = function(weather, searchCity){
+    weatherContainer.textContent= "";  
+    citySearch.textContent=searchCity;
+    
+    //create current date within a span element 
+    // this will be at the top 
+   var currentDate = document.createElement("span")
+   currentDate.textContent=" (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+   citySearch.appendChild(currentDate);
+
+    //this is will be for the images that go for the forecast
+    var weatherIcon = document.createElement("img")
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+    citySearch.appendChild(weatherIcon);
+
+    //creating an element for the current temperature 
+   var temperature = document.createElement("span");
+   temperature.textContent = "Temperature: " + weather.main.temp + " °F";
+   temperature.classList = "list-group-item"
+
+    //create a span element to hold Wind data
+    var windSpeed = document.createElement("span");
+    windSpeed.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+    windSpeed.classList = "list-group-item"
+
+   //creating an element for the current humidity
+   var humidity = document.createElement("span");
+   humidity.textContent = "Humidity: " + weather.main.humidity + " %";
+   humidity.classList = "list-group-item"
+
+    // variables for LAT/LON     
+   var lat = weather.coord.lat;
+   var lon = weather.coord.lon;
+
+    // appending each variable to the container 
+    // the container will contain all of the weather information
+    weatherContainer.appendChild(temperature);
+    weatherContainer.appendChild(windSpeed);
+    weatherContainer.appendChild(humidity);
+
+}
+
 
