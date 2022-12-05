@@ -104,7 +104,7 @@ var get5Day = function(city){
     fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
-           display5Day(data);
+           displayDay(data);
         });
     });
 };
@@ -129,7 +129,7 @@ var displayDay = function(weather){
         var forecastDate = document.createElement("h5")
         forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
         forecastDate.classList = "card-header text-center"
-        forecast.appendChild(forecastDate);
+        forecastEl.appendChild(forecastDate);
 
         //icons that will be used to show the weather 
         var weatherIcon = document.createElement("img")
@@ -163,8 +163,28 @@ var displayDay = function(weather){
        forecastContainer.appendChild(forecastEl);
 
 
-}}
+}};
+
+var pastSearch = function(pastSearch){
+ 
+
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
+    pastSearchEl.setAttribute("data-city",pastSearch)
+    pastSearchEl.setAttribute("type", "submit");
+
+    pastSearchButton.prepend(pastSearchEl);
+};
 
 
+var pastSearchHandle = function(event){
+    var city = event.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        get5Day(city);
+    }
+};
 
-
+cityForm.addEventListener("submit", sumbitHandler);
+pastSearchButton.addEventListener("click", pastSearchHandle);
