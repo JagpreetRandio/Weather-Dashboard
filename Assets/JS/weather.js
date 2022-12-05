@@ -96,4 +96,75 @@ var displayWeather = function(weather, searchCity){
 
 }
 
+// now we're working on the 5-day forecast 
+var get5Day = function(city){
+    var apiKey = "1dce1fbc0faf4a6477d89bb59d560269"
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+           display5Day(data);
+        });
+    });
+};
+
+// for 5-day forecast 
+var displayDay = function(weather){
+    forecastContainer.textContent = ""
+    forecastTitle.textContent = "5-Day Forecast:";
+    // 5-day forecast will appear when city is searched 
+
+    // creating a for loop
+    var forecast = weather.list;
+        for(var i=5; i < forecast.length; i=i+8){
+       var dailyForecast = forecast[i];
+       console.log(dailyForecast)
+    
+        //creating an div element for the daily forecast 
+        var forecastEl=document.createElement("div");
+        forecastEl.classList = "card bg-primary text-light m-2";
+
+        //create date element
+        var forecastDate = document.createElement("h5")
+        forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+        forecastDate.classList = "card-header text-center"
+        forecast.appendChild(forecastDate);
+
+        //icons that will be used to show the weather 
+        var weatherIcon = document.createElement("img")
+        weatherIcon.classList = "card-body text-center";
+        weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+
+        // append the the weather icon to the forecast element 
+        forecastEl.appendChild(weatherIcon);
+        
+        // this will display the temperature
+        var forecastTemp=document.createElement("span");
+       forecastTemp.classList = "card-body text-center";
+       forecastTemp.textContent = "Temperature: " + dailyForecast.main.temp + " °F";
+
+       //this will display the wind speed
+       var windSpeed = document.createElement("span");
+       windSpeed.textContent = "Wind Speed: " + dailyForecast.wind.speed + " MPH";
+       windSpeed.classList = "card-body text-center";
+       
+       //this will display the humidity
+       var forecastHum=document.createElement("span");
+       forecastHum.classList = "card-body text-center";
+       forecastHum.textContent = "Humidity: " + dailyForecast.main.humidity + "  %";
+       
+       // append all the elements to the forecast element 
+       forecastEl.appendChild(forecastTemp);
+       forecastEl.appendChild(windSpeed);
+       forecastEl.appendChild(forecastHum);
+
+       //now we are appending the forecast to the forecast container
+       forecastContainer.appendChild(forecastEl);
+
+
+}}
+
+
+
 
