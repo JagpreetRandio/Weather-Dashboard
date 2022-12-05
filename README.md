@@ -6,11 +6,11 @@ The weather dashboard allows the user to get the upcoming 5-day forecast for any
 
 ## Deployment 
 
-URL of Deployment: 
+URL of Deployment: https://jagpreetrandio.github.io/Weather-Dashboard/
 
 ## Usage
 
-![](https://raw.githubusercontent.com/JagpreetRandio/Work-Day-Schedule/main/Assets/ezgif.com-gif-maker.gif)
+![](https://github.com/JagpreetRandio/Weather-Dashboard/blob/main/Assets/images/ezgif.com-gif-maker-2.gif)
 
 
 ## Credits
