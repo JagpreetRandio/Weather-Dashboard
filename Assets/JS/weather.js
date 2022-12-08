@@ -165,9 +165,8 @@ var displayDay = function(weather){
 
 }};
 
+//this will show the past searches 
 var pastSearch = function(pastSearch){
- 
-
     pastSearchEl = document.createElement("button");
     pastSearchEl.textContent = pastSearch;
     pastSearchEl.classList = "d-flex w-100 btn-light border p-2";
